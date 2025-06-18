@@ -36,5 +36,5 @@ Abra o arquivo index.html:
 
 Simplesmente abra o arquivo index.html no seu navegador de preferência. Não há dependências ou build steps necessários.
 🔗 Links
-Site no ar: [link para o seu site publicado, ex: no GitHub Pages ou Vercel]
-LinkedIn: [link para o seu perfil no LinkedIn]
+Site no ar: https://ikki157.github.io/Portifolio/
+LinkedIn: www.linkedin.com/in/ikki-silva-carvalho-0639a4323
