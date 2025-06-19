@@ -553,4 +553,7 @@ img {
     .contato-wrapper {
         padding: 25px;
     }
+    .contato-info ul li a {
+        font-size: 1rem;
+    }
 }
