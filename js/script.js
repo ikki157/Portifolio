@@ -20,50 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Dentro do 'DOMContentLoaded'
-
-    // === LÓGICA PARA TROCA DE TEMA (DARK/LIGHT MODE) ===
-    const themeToggleButton = document.getElementById('theme-toggle-btn');
-    const body = document.body;
-    const themeIcon = themeToggleButton.querySelector('i');
-
-    // Função para aplicar o tema com base no que está salvo
-    function applyTheme(theme) {
-        if (theme === 'dark') {
-            body.classList.add('dark-theme');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        } else {
-            body.classList.remove('dark-theme');
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        }
-    }
-
-    // Verifica se já existe um tema salvo no localStorage
-    const savedTheme = localStorage.getItem('theme');
-    // Aplica o tema salvo ao carregar a página
-    if (savedTheme) {
-        applyTheme(savedTheme);
-    }
-
-    // Adiciona o evento de clique ao botão
-    themeToggleButton.addEventListener('click', () => {
-        let newTheme;
-        if (body.classList.contains('dark-theme')) {
-            // Se está no tema escuro, muda para o claro
-            newTheme = 'light';
-        } else {
-            // Se está no tema claro, muda para o escuro
-            newTheme = 'dark';
-        }
-        
-        applyTheme(newTheme);
-        // Salva a nova preferência no localStorage
-        localStorage.setItem('theme', newTheme);
-    });
-
-        // Fecha o menu ao clicar em um link (para navegação na mesma página)
+        // Fecha o menu ao clicar em um link
         document.querySelectorAll('.nav-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 if (navMenu.classList.contains('active')) {
@@ -149,70 +106,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('scroll', updateActiveLink);
     updateActiveLink(); // Chama na carga inicial para definir o link ativo
-
-
-    // === VALIDAÇÃO SIMPLES DO FORMULÁRIO DE CONTATO (CLIENT-SIDE) ===
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            const nome = document.getElementById('nome').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const mensagem = document.getElementById('mensagem').value.trim();
-            const contactForm = document.getElementById('contact-form');
-            const formMessage = document.getElementById('form-message'); // Pegue o novo elemento
-
-if (contactForm) {
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Impede o envio em qualquer caso por enquanto
-        formMessage.textContent = ''; // Limpa mensagens anteriores
-        formMessage.className = 'form-message'; // Reseta as classes
-
-        const nome = document.getElementById('nome').value.trim();
-        // ... (resto das suas variáveis)
-
-        if (!isValid) {
-            formMessage.textContent = 'Por favor, corrija os erros e tente novamente.';
-            formMessage.classList.add('error');
-        } else {
-            // Simula o envio
-            formMessage.textContent = 'Mensagem enviada com sucesso! (Simulação)';
-            formMessage.classList.add('success');
-            contactForm.reset(); // Limpa o formulário
-        }
-    });
-}
-            let isValid = true;
-            let
-            errorMessage = '';
-
-            if (nome === '') {
-                isValid = false;
-                errorMessage += 'O campo Nome é obrigatório.\n';
-            }
-            if (email === '') {
-                isValid = false;
-                errorMessage += 'O campo E-mail é obrigatório.\n';
-            } else {
-                // Validação simples de e-mail
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(email)) {
-                    isValid = false;
-                    errorMessage += 'Por favor, insira um e-mail válido.\n';
-                }
-            }
-            if (mensagem === '') {
-                isValid = false;
-                errorMessage += 'O campo Mensagem é obrigatório.\n';
-            }
-
-            if (!isValid) {
-                event.preventDefault(); // Impede o envio do formulário
-                alert('Por favor, corrija os seguintes erros:\n\n' + errorMessage);
-            } else {
-                alert('Formulário enviado com sucesso! (Simulação)');
-                event.preventDefault();
-            }
-        });
-    }
-
 });

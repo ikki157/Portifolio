@@ -1,12 +1,12 @@
 /* === GERAL E RESET === */
 :root {
-    --cor-primaria: #3498db; /* Azul suave */
-    --cor-secundaria: #2c3e50; /* Azul escuro/Cinza ardósia */
-    --cor-texto: #333;
-    --cor-texto-claro: #f8f9fa;
-    --cor-fundo: #ffffff;
-    --cor-fundo-light: #f4f7f6; /* Cinza muito claro para seções alternadas */
-    --sombra-padrao: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --cor-primaria: #00a8ff; /* Azul mais vibrante para destaque */
+    --cor-secundaria: #e0e0e0; /* Cor para títulos e textos de destaque */
+    --cor-botoes: #00699e; /* Azul para botões */
+    --cor-texto: #ffffff; /* Branco para textos corridos, confortável para ler */
+    --cor-fundo: #0f172a; /* Fundo principal (azul naval escuro) */
+    --cor-fundo-light: #1e293b; /* Fundo para seções e cards (um tom acima do fundo) */
+    --sombra-padrao: 0 5px 15px rgba(0, 0, 0, 0.2);
     --border-radius-padrao: 8px;
     --transicao-suave: all 0.3s ease-in-out;
     --font-principal: 'Lato', sans-serif;
@@ -87,6 +87,7 @@ img {
 
 .section {
     padding: 80px 0;
+    margin-top: 24px;
 }
 
 .bg-light {
@@ -107,9 +108,9 @@ img {
 }
 
 .btn-primary {
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-botoes);
     color: var(--cor-texto-claro);
-    border-color: var(--cor-primaria);
+    border-color: var(--cor-botoes);
 }
 
 .btn-primary:hover {
@@ -121,9 +122,9 @@ img {
 }
 
 .btn-secondary {
-    background-color: var(--cor-secundaria);
+    background-color: var(--cor-botoes);
     color: var(--cor-texto-claro);
-    border-color: var(--cor-secundaria);
+    border-color: var(--cor-botoes);
 }
 
 .btn-secondary:hover {
@@ -148,68 +149,7 @@ img {
     margin-right: 8px;
 }
 
-/* === ESTILOS DO BOTÃO DE TEMA === */
-.theme-toggle {
-    background: none;
-    border: none;
-    color: var(--cor-secundaria);
-    font-size: 1.4rem;
-    cursor: pointer;
-    margin-left: 20px;
-    transition: color 0.3s ease;
-    position: fixed; /* Fixa o botão no canto superior direito */
-    top: 20px;
-    right: 20px;
-    z-index: 1001; /* Garante que fique acima de outros elementos */}
-
-.theme-toggle:hover {
-    color: var(--cor-primaria);
-}
-
-/* === DEFINIÇÕES DO TEMA ESCURO (DARK MODE) === */
-body.dark-theme {
-    /* Redefinindo as variáveis de cor para o modo escuro */
-    --cor-primaria: #3498db; /* Azul pode se manter vibrante */
-    --cor-secundaria: #5dade2; /* Títulos com um azul mais claro para contraste */
-    --cor-texto: #e0e0e0; /* Texto principal quase branco */
-    --cor-texto-claro: #1c1c1c; /* Texto para botões primários (escuro) */
-    --cor-fundo: #121212; /* Fundo principal bem escuro */
-    --cor-fundo-light: #1e1e1e; /* Fundo de seções alternadas um pouco mais claro */
-    --sombra-padrao: 0 5px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* Ajustes finos para elementos específicos no modo escuro */
-body.dark-theme #header.scrolled {
-    background-color: rgba(30, 30, 30, 0.95); /* Fundo do header com scroll */
-}
-
-body.dark-theme .projeto-item,
-body.dark-theme .habilidade-categoria,
-body.dark-theme .contato-wrapper {
-    background-color: var(--cor-fundo-light);
-    border: 1px solid #2a2a2a; /* Adiciona uma borda sutil para destacar os cards */
-}
-
-body.dark-theme .form-group input[type="text"],
-body.dark-theme .form-group input[type="email"],
-body.dark-theme .form-group textarea {
-    background-color: #2c2c2c;
-    border-color: #444;
-    color: var(--cor-texto);
-}
-
-body.dark-theme .form-group input:focus,
-body.dark-theme .form-group textarea:focus {
-    border-color: var(--cor-primaria);
-}
-
-/* Esconde o menu hamburguer no desktop */
-@media (min-width: 769px) {
-    .theme-toggle {
-        display: block;
-    }
-}
-
+/* === MENU HAMBÚRGUER === */
 /* Ajuste para o menu hamburguer no mobile */
 @media (max-width: 768px) {
     .theme-toggle {
@@ -236,7 +176,8 @@ body.dark-theme .form-group textarea:focus {
 
 #header.scrolled {
     padding: 10px 0;
-    background-color: rgba(255, 255, 255, 0.98); /* Leve transparência no scroll */
+    background-color: var(--cor-fundo);
+    box-shadow: var(--sombra-padrao);
 }
 
 #header .container {
@@ -431,7 +372,13 @@ body.dark-theme .form-group textarea:focus {
 }
 
 /* === SEÇÃO CONTATO === */
+.contato-info h3 {
+    color: var(--cor-secundaria);
+    margin-bottom: 20px;
+}
+
 .contato-wrapper {
+    justify-content: center; /* Centraliza o conteúdo no meio */
     display: flex;
     gap: 40px;
     background-color: var(--cor-fundo);
@@ -441,145 +388,44 @@ body.dark-theme .form-group textarea:focus {
 }
 
 .contato-info {
-    flex-basis: 40%;
+    flex-basis: 100%; /* Ocupa todo o espaço */
+    max-width: 600px; /* Define uma largura máxima para não ficar muito largo em telas grandes */
 }
 
-.contato-info h3 {
-    color: var(--cor-secundaria);
-    margin-bottom: 20px;
+.contato-info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adiciona um espaço entre os links */
+    flex-wrap: wrap;
+    margin-top: 25px;
 }
 
 .contato-info ul li {
-    margin-bottom: 15px;
-    font-size: 1.05rem;
-    display: flex;
-    align-items: center;
+    margin-bottom: 0; /* Remove a margem que existia */
+}
+
+.contato-info ul li a {
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+    margin-left: 10px;
+}
+.contao-info ul li a:hover {
+    color: var(--cor-primaria);
 }
 
 .contato-info ul li i {
-    margin-right: 15px;
+    color: var(--cor-primaria);
     font-size: 1.5rem;
-    color: var(--cor-primaria);
-    width: 30px;
+    width: 30px; /* Para alinhar os ícones */
     text-align: center;
-}
-
-.contato-form {
-    flex-basis: 60%;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: var(--cor-secundaria);
-    font-size: 0.9rem;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group textarea {
-    width: 100%;
-    padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius-padrao);
-    font-size: 1rem;
-    font-family: var(--font-principal);
-    transition: border-color 0.3s ease;
-}
-
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--cor-primaria);
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-.contato-form .btn {
-    width: 100%;
-}
-
-.form-message {
-    margin-top: 15px;
-    padding: 10px;
-    border-radius: 5px;
-    text-align: center;
-    display: none; /* Começa escondido */
-}
-.form-message.success {
-    background-color: #d4edda;
-    color: #155724;
-    display: block;
-}
-.form-message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    display: block;
-}
-
-/* === SEÇÃO EXTRAS (DEPOIMENTOS/CERTIFICADOS) === */
-.extras-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.extra-item {
-    background: var(--cor-fundo);
-    padding: 25px;
-    border-radius: var(--border-radius-padrao);
-    box-shadow: var(--sombra-padrao);
-}
-
-.depoimento blockquote {
-    margin: 0;
-    font-style: italic;
-}
-
-.depoimento blockquote p {
-    margin-bottom: 15px;
-}
-
-.depoimento footer {
-    font-weight: 600;
-    color: var(--cor-primaria);
-    text-align: right;
-}
-
-.certificado img {
-    width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    border: 1px solid #eee;
-    border-radius: var(--border-radius-padrao);
-    margin-bottom: 15px;
-}
-
-.certificado h3 {
-    font-size: 1.2rem;
-    color: var(--cor-secundaria);
-}
-.certificado p {
-    font-size: 0.9rem;
 }
 
 /* === RODAPÉ (FOOTER) === */
 #footer {
-    background: var(--cor-secundaria);
+    background: var(--cor-fundo);
     color: rgba(255,255,255,0.8);
     text-align: center;
     padding: 30px 0;
-    margin-top: 60px;
 }
 
 #footer p {
