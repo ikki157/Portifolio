@@ -590,7 +590,7 @@ body.cursor-hover .cursor-gooey {
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 100%; /* Abaixo do header */
+        top: 100%; 
         left: 0;
         background-color: var(--cor-fundo);
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
@@ -616,7 +616,7 @@ body.cursor-hover .cursor-gooey {
     .nav-menu li:last-child a {
         border-bottom: none;
     }
-    .nav-menu a::after { /* Remover sublinhado no mobile ou ajustar */
+    .nav-menu a::after { 
         display: none;
     }
 
@@ -630,7 +630,7 @@ body.cursor-hover .cursor-gooey {
     }
 
     .projetos-grid {
-        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        grid-template-columns: 1fr; 
     }
     .habilidades-container {
         grid-template-columns: 1fr;
@@ -652,6 +652,10 @@ body.cursor-hover .cursor-gooey {
     .projeto-imagem-container img {
         height: 300px;
     }
+
+    body { cursor: auto !important; }
+   .cursor-gooey { display: none !important; }
+
 }
 
 @media (max-width: 480px) {
