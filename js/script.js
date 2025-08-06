@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.toggle('active');
             const isExpanded = navMenu.classList.contains('active');
             menuToggle.setAttribute('aria-expanded', isExpanded);
-            // Alterna o ícone do menu
+
             const icon = menuToggle.querySelector('i');
             if (isExpanded) {
                 icon.classList.remove('fa-bars');
@@ -18,6 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
+        });
+
+        // Inicializa o Atropos para os elementos com a classe 'my-atropos'
+        document.querySelectorAll('.my-atropos').forEach((element) => {
+            Atropos({
+                el: element,
+                // Opções de customização aqui
+                // https://atroposjs.com/docs
+            });
         });
 
         // Fecha o menu ao clicar em um link
@@ -55,26 +64,24 @@ document.addEventListener('DOMContentLoaded', function() {
     const animatedElements = document.querySelectorAll('.profile-pic, .sobre-texto, .projeto-item, .habilidade-categoria, .contato-info, .contato-form, .extra-item');
 
     const observerOptions = {
-        root: null, // Observa em relação ao viewport
+        root: null, 
         rootMargin: '0px',
-        threshold: 0.1 // % do elemento visível para disparar
+        threshold: 0.1 
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Opcional: parar de observar depois que a animação ocorreu
-                // observer.unobserve(entry.target);
+                observer.unobserve(entry.target);
             } else {
-                // Opcional: remover a classe se o elemento sair da tela para re-animar
-                // entry.target.classList.remove('visible');
+                entry.target.classList.remove('visible');
             }
         });
     }, observerOptions);
 
     animatedElements.forEach(el => {
-        el.classList.add('fade-in-up'); // Adiciona classe base para estado inicial
+        el.classList.add('fade-in-up'); 
         observer.observe(el);
     });
 
@@ -96,8 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         navLinks.forEach(link => {
             link.classList.remove('active-link');
-            // Verifica se o href do link corresponde à seção atual
-            // Remove o '#' do href para comparar com o id da seção
             if (link.getAttribute('href').substring(1) === currentSectionId) {
                 link.classList.add('active-link');
             }
@@ -105,5 +110,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.addEventListener('scroll', updateActiveLink);
-    updateActiveLink(); // Chama na carga inicial para definir o link ativo
+    updateActiveLink(); 
 });
