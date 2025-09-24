@@ -20,15 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Inicializa o Atropos para os elementos com a classe 'my-atropos'
-        document.querySelectorAll('.my-atropos').forEach((element) => {
-            Atropos({
-                el: element,
-                shadow: false,
-                rotateXMax: 15,
-                rotateYMax: 15
-            });
-        });
 
         // Fecha o menu ao clicar em um link
         document.querySelectorAll('.nav-menu a').forEach(link => {
@@ -60,31 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
     }
-
-    // === ANIMAÇÃO DE "FADE-IN-UP" AO ROLAR PARA ELEMENTOS ===
-    const animatedElements = document.querySelectorAll('.profile-pic, .sobre-texto, .projeto-item, .habilidade-categoria, .contato-info, .contato-form, .extra-item');
-
-    const observerOptions = {
-        root: null, 
-        rootMargin: '0px',
-        threshold: 0.1 
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            } else {
-                entry.target.classList.remove('visible');
-            }
-        });
-    }, observerOptions);
-
-    animatedElements.forEach(el => {
-        el.classList.add('fade-in-up'); 
-        observer.observe(el);
-    });
 
 
     // === DESTAQUE DO LINK ATIVO NO MENU DE NAVEGAÇÃO AO ROLAR ===
@@ -131,9 +97,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    document.querySelectorAll('a, button, .projeto-item').forEach(el => {
+    document.querySelectorAll('a, button, .projeto-card').forEach(el => {
         el.addEventListener('mouseover', () => document.body.classList.add('cursor-hover'));
         el.addEventListener('mouseout', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // === ANIMAÇÕES DE ENTRADA DOS PROJETOS ===
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Adiciona um pequeno delay baseado no índice para animação escalonada
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 150);
+                fadeInObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observa todos os cards de projeto para animação
+    document.querySelectorAll('.projeto-card').forEach(card => {
+        fadeInObserver.observe(card);
     });
 });
 
